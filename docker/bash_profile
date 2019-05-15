@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# modify prompt to let the user know that he can jam
+PS1="\[\e[1;35m\](${PWD##*/})\[\e[0m\] $PS1"
+
+run() {
+    # ensure that quotes surrounding arguments are maintained
+    # e.g. run web python manage.py run_sql "select 1"
+    local args="";
+    for i in "${@:3}"; do
+        args=$args'"'$i'" '
+    done
+
+    local cmd="$2 $args"
+    local docker_compose_service="$1"
+    docker-compose exec $docker_compose_service bash -c "$cmd"
+}
+
+# aliases can't be exported. Use functions instead
+python()      { run web python "$@"; }
+pip()         { run web pip "$@"; }
+psql()        { run db "$@"; }
+
+export -f python
+export -f pip
+export -f psql
