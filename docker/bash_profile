@@ -17,10 +17,12 @@ run() {
 }
 
 # aliases can't be exported. Use functions instead
-python()      { run web python "$@"; }
-pip()         { run web pip "$@"; }
-psql()        { run db "$@"; }
+python()       { run web python "$@"; }
+pip()          { run web pip "$@"; }
+psql()         { run db "$@"; }
+djangoadmin()  { run web django-admin "$@"; }
 
 export -f python
 export -f pip
 export -f psql
+export -f djangoadmin
