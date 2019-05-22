@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ ${BASH_VERSINFO[0]} -lt 4 ]; then
+    echo "Your bash is way too old, we support from version 4 onward"
+    exit 1
+fi
+
+docker-compose -f docker-compose.yml up -d
+
+PWD=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+bash --init-file $PWD/bash_profile -i

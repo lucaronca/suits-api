@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ ${BASH_VERSINFO[0]} -lt 4 ]; then
+    echo "Your bash is way too old, we support from version 4 onward"
+    exit 1
+fi
+
+docker-compose -f docker-compose.yml stop
+
+printf "\033[32mProject is now down\n\033[0m"
+
+kill -9 $PPID
