@@ -6,3 +6,4 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         Suit.objects.all().delete()
+        print('All suits have been dropped')
