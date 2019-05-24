@@ -5,21 +5,26 @@ class SuitPipeline():
     def process_item(self, item, spider):
         try:
             # suit already exits
-            suit = Suit.objects.get(url=item["url"])
-            fields_to_update = []
-            if item.get('color', None) != None:
-                fields_to_update.append('color')
-                suit.color = item['color']
-            if item.get('fit', None) != None:
-                fields_to_update.append('fit')
-                suit.fit = item['fit']
-            if item.get('material', None) != None:
-                fields_to_update.append('material')
-                suit.material = item['material']
-            suit.save(update_fields=fields_to_update)
-            return item
-        except Suit.DoesNotExist:
-            pass
+            suit = Suit.objects.get(pk=item['url'])
+            field_to_update = None
 
-        item.save() # save instantiates the django model already making a save on it  
-        return item
+            # attribute spiders
+            if item.get('color', None) != None:
+                suit.color = item['color']
+                field_to_update = 'color'
+            if item.get('fit', None) != None:
+                suit.fit = item['fit']
+                field_to_update = 'fit'
+            if item.get('material', None) != None:
+                suit.material = item['material']
+                field_to_update = 'material'
+
+            # update the model if pipeline has processed an attribute spider
+            if field_to_update != None:
+                suit.save(update_fields=[field_to_update])
+
+        except Suit.DoesNotExist:
+            item.save() # save instantiates the django model and save it
+
+        finally:
+            return item
