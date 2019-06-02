@@ -3,5 +3,5 @@ from .views import ListSuitsView
 
 
 urlpatterns = [
-    path('suits/', ListSuitsView.as_view(), name="suits-all")
+    path('suits/', ListSuitsView.as_view(), name="list-suits")
 ]
