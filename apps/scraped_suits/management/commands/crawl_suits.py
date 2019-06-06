@@ -4,10 +4,17 @@ from scrapy.settings import Settings
 from scrapy.crawler import CrawlerRunner
 from scrapy.utils.log import configure_logging
 import services.scraper.scraper.settings as scraper_settings
-from services.scraper.scraper.spiders.hugo_boss_spiders import HugoBossSuitSpider, HugoBossColorSpider, HugoBossFitSpider, HugoBossMaterialSpider
+from apps.scraped_suits.models import Price
+from services.scraper.scraper.spiders.hugo_boss_spiders import (
+    HugoBossSuitSpider,
+    HugoBossColorSpider,
+    HugoBossFitSpider,
+    HugoBossMaterialSpider,
+    HugoBossPriceSpider,
+)
 
 class Command(BaseCommand):
-    help = "Release the spiders"
+    help = 'Release the spiders'
 
     def handle(self, *args, **options):
         settings = Settings()
@@ -23,6 +30,8 @@ class Command(BaseCommand):
             runner.crawl(HugoBossColorSpider)
             runner.crawl(HugoBossFitSpider)
             runner.crawl(HugoBossMaterialSpider)
+            runner.crawl(HugoBossPriceSpider)
+
             d = runner.join()
             d.addBoth(lambda _: reactor.stop())
 
