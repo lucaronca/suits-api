@@ -11,3 +11,11 @@ class Suit(models.Model):
 
     class Meta:
         verbose_name = "Suit scraped from website"
+
+class Price(models.Model):
+    suit = models.ForeignKey(Suit, models.CASCADE)
+    amount = models.DecimalField(max_digits=6, decimal_places=2)
+    currency = models.CharField(max_length=3, default='GBP')
+
+    def __unicode__(self):
+        return '{}{}'.format(self.currency, self.amount)
