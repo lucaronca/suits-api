@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/web/Dockerfile
-    command: python manage.py runserver 0.0.0.0:8000
+    command: ./docker/web/scripts/wait-for-postgres.sh db 5432 python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
