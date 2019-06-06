@@ -28,8 +28,10 @@ python()       { run web python "$@"; }
 pip()          { run web pip "$@"; }
 psql()         { docker-compose exec db psql "$@"; }
 djangoadmin()  { run web django-admin "$@"; }
+scrapy()       { run web scrapy "$@"; }
 
 export -f python
 export -f pip
 export -f psql
 export -f djangoadmin
+export -f scrapy
