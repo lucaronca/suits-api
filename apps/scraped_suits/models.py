@@ -9,6 +9,9 @@ class Suit(models.Model):
     material = models.CharField(max_length=150)
     image = models.CharField(max_length=1000)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = "Suit scraped from website"
 
