@@ -23,6 +23,9 @@ class Command(BaseCommand):
         configure_logging(settings=settings)
         runner = CrawlerRunner(settings=settings)
 
+        # prices will be refetched
+        Price.objects.all().delete()
+
         @defer.inlineCallbacks
         def crawl():
             yield runner.crawl(HugoBossSuitSpider)
