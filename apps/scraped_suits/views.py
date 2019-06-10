@@ -5,6 +5,7 @@ from django_filters import rest_framework as filters
 from django.db.models import QuerySet
 from .models import Suit, Price
 from .serializers import SuitSerializer
+from .filters import SuitFilter
 
 class BadRequest(APIException):
     status_code = status.HTTP_400_BAD_REQUEST
@@ -18,6 +19,7 @@ class BadRequest(APIException):
 
 class ListSuitsView(generics.ListAPIView):
     filter_backends = (filters.DjangoFilterBackend,)
+    filter_class = SuitFilter
     """
     Provides a get method handler.
     """
