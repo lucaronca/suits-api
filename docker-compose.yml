@@ -1,16 +1,25 @@
 version: '3'
 
 services:
-  db:
-    image: postgres
   web:
     build:
       context: .
       dockerfile: ./docker/web/Dockerfile
-    command: python manage.py runserver 0.0.0.0:8000
+    command: ./docker/web/scripts/wait-for-postgres.sh db 5432 python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
       - 8000:8000
     depends_on:
       - db
+  db:
+    image: postgres
+    volumes:
+      - .postgres:/var/lib/postgresql/data
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - 5432:5432

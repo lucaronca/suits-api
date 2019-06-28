@@ -13,16 +13,25 @@ run() {
 
     local cmd="$2 $args"
     local docker_compose_service="$1"
-    docker-compose exec $docker_compose_service bash -c "$cmd"
+    local execute_in_bash=""
+
+    case "$docker_compose_service" in
+    "web")  execute_in_bash="bash -c" ;;
+    *)      execute_in_bash="" ;;
+    esac
+
+    docker-compose exec $docker_compose_service $execute_in_bash "$cmd"
 }
 
 # aliases can't be exported. Use functions instead
 python()       { run web python "$@"; }
 pip()          { run web pip "$@"; }
-psql()         { run db "$@"; }
+psql()         { docker-compose exec db psql "$@"; }
 djangoadmin()  { run web django-admin "$@"; }
+scrapy()       { run web scrapy "$@"; }
 
 export -f python
 export -f pip
 export -f psql
 export -f djangoadmin
+export -f scrapy
