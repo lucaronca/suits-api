@@ -3,7 +3,6 @@ from rest_framework.exceptions import APIException
 from rest_framework.views import status
 from .models import Suit, Price
 from .serializers import SuitSerializer
-from .filters import SuitFilter
 from django.db.models import QuerySet
 
 class BadRequest(APIException):

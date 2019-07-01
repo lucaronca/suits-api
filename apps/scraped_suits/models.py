@@ -14,6 +14,7 @@ class Suit(models.Model):
 
     class Meta:
         verbose_name = "Suit scraped from website"
+        ordering = ['name']
 
 class Price(models.Model):
     suit = models.ForeignKey(Suit, models.CASCADE)
