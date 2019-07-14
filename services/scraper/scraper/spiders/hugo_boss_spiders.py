@@ -9,7 +9,6 @@ URL_SELECTOR = 'a.product-tile__link::attr(href)'
 
 class HugoBossSuitSpider(scrapy.Spider):
     name = 'hugo_boss'
-    BASE_URL = BASE_URL
     start_urls = [BASE_URL + '/boss-men-suits/?sz=999']
 
     def parse(self, response):
@@ -17,13 +16,12 @@ class HugoBossSuitSpider(scrapy.Spider):
 
         for line in data:
             item = SuitItem()
-            item['url'] = self.BASE_URL + line.css(URL_SELECTOR).extract_first()
+            item['url'] = BASE_URL + line.css(URL_SELECTOR).extract_first()
             item['name'] = line.css('div.product-tile__productInfoWrapper::text').extract_first().strip('\n').strip('\n\nby')
             item['image'] = line.css('img.product-tile__image::attr(src)').extract_first()
             yield item
 
 class HugoBossSuitAttributeSpider(scrapy.Spider):
-    BASE_URL = BASE_URL
     attribute = None
     value_by_url = None
 
@@ -43,15 +41,15 @@ class HugoBossSuitAttributeSpider(scrapy.Spider):
 
     def start_requests(self):
         for url in self.value_by_url:
-            yield Request(url=self.BASE_URL + url, callback=self.parse)
+            yield Request(url=BASE_URL + url, callback=self.parse)
     
     def parse(self, response):
         data = response.css('div.product-tile')
 
         for line in data:
             item = SuitItem()
-            item['url'] = self.BASE_URL + line.css(URL_SELECTOR).extract_first()
-            item[self.attribute] = self.value_by_url[response.url.replace(self.BASE_URL, '')]
+            item['url'] = BASE_URL + line.css(URL_SELECTOR).extract_first()
+            item[self.attribute] = self.value_by_url[response.url.replace(BASE_URL, '')]
             yield item
 
 class HugoBossColorSpider(HugoBossSuitAttributeSpider):
