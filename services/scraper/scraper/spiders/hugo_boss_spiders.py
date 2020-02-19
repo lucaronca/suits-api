@@ -55,30 +55,30 @@ class HugoBossSuitAttributeSpider(scrapy.Spider):
 class HugoBossColorSpider(HugoBossSuitAttributeSpider):
     attribute = 'color'
     value_by_url = {
-        '/boss-men-suits_blue/': 'blue',
-        '/boss-men-suits_black/': 'black',
-        '/boss-men-suits_grey/': 'grey',
-        '/boss-men-suits_beige/': 'beige',
-        '/boss-men-suits_brown/': 'brown',
-        '/boss-men-suits_pink/': 'pink',
-        '/boss-men-suits_white/': 'white',
+        '/men-suits_blue/': 'blue',
+        '/men-suits_black/': 'black',
+        '/men-suits_grey/': 'grey',
+        '/men-suits_beige/': 'beige',
+        '/men-suits_brown/': 'brown',
+        '/men-suits_pink/': 'pink',
+        '/men-suits_white/': 'white',
     }
 
 class HugoBossFitSpider(HugoBossSuitAttributeSpider):
     attribute = 'fit'
     value_by_url = {
-        '/boss-men-suits/?prefn1=fit&prefv1=Slim%20fit': 'slim',
-        '/boss-men-suits/?prefn1=fit&prefv1=Regular%20fit': 'regular',
-        '/boss-men-suits/?prefn1=fit&prefv1=Extra-slim%20fit': 'extra-slim'
+        '/men-suits/?prefn1=fit&prefv1=Slim%20fit': 'slim',
+        '/men-suits/?prefn1=fit&prefv1=Regular%20fit': 'regular',
+        '/men-suits/?prefn1=fit&prefv1=Extra-slim%20fit': 'extra-slim'
     }
 
 class HugoBossMaterialSpider(HugoBossSuitAttributeSpider):
     attribute = 'material'
     value_by_url = {
-        '/boss-men-suits/?prefn1=hbMaterialQuality&prefv1=Wool': 'wool',
-        '/boss-men-suits/?prefn1=hbMaterialQuality&prefv1=Cotton': 'cotton',
-        '/boss-men-suits/?prefn1=hbMaterialQuality&prefv1=Synthetic%20fibre': 'synthetic-fibre',
-        '/boss-men-suits/?prefn1=hbMaterialQuality&prefv1=Linen': 'linen'
+        '/men-suits/?prefn1=hbMaterialQuality&prefv1=Wool': 'wool',
+        '/men-suits/?prefn1=hbMaterialQuality&prefv1=Cotton': 'cotton',
+        '/men-suits/?prefn1=hbMaterialQuality&prefv1=Synthetic%20fibre': 'synthetic-fibre',
+        '/men-suits/?prefn1=hbMaterialQuality&prefv1=Linen': 'linen'
     }
 
 class HugoBossPriceSpider(scrapy.Spider):
