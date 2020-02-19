@@ -15,3 +15,7 @@ Enter in the suits_web container and from here launch
 ```
 ./manage.py test
 ```
+## lint
+```
+flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+```
