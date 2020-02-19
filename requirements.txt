@@ -10,6 +10,7 @@ Django==2.2.10
 django-filter==2.2.0
 djangorestframework==3.9.4
 entrypoints==0.3
+flake8==3.7.9
 hyperlink==19.0.0
 idna==2.8
 incremental==17.5.0
