@@ -29,11 +29,11 @@ class SuitsPipeline():
                 field_to_update.append('material')
 
             # update the model if pipeline processed an attribute spider
-            if field_to_update != None:
+            if field_to_update is not None:
                 suit.save(update_fields=field_to_update)
 
         except Suit.DoesNotExist:
-            item.save() # save instantiates the django model and save it
+            item.save()  # save instantiates the django model and save it
 
         finally:
             return item

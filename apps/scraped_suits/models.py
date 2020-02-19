@@ -16,6 +16,7 @@ class Suit(models.Model):
         verbose_name = "Suit scraped from website"
         ordering = ['name']
 
+
 class Price(models.Model):
     suit = models.ForeignKey(Suit, models.CASCADE)
     amount = models.DecimalField(max_digits=6, decimal_places=2)

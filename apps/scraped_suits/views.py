@@ -7,6 +7,7 @@ from .models import Suit, Price
 from .serializers import SuitSerializer
 from .filters import SuitFilter
 
+
 class BadRequest(APIException):
     status_code = status.HTTP_400_BAD_REQUEST
     default_detail = 'Bad request'
@@ -16,6 +17,7 @@ class BadRequest(APIException):
         if description is not None:
             self.default_detail = description
         super().__init__()
+
 
 class ListSuitsView(generics.ListAPIView):
     filter_backends = (filters.DjangoFilterBackend,)

@@ -13,6 +13,7 @@ from services.scraper.scraper.spiders.hugo_boss_spiders import (
     HugoBossPriceSpider,
 )
 
+
 class Command(BaseCommand):
     help = 'Release the spiders'
 
@@ -39,4 +40,4 @@ class Command(BaseCommand):
             d.addBoth(lambda _: reactor.stop())
 
         crawl()
-        reactor.run() # the script will block here until the last crawl call is finished
+        reactor.run()  # the script will block here until the last crawl call is finished

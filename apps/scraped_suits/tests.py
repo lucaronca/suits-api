@@ -4,11 +4,11 @@ from rest_framework.views import status, APIView
 from rest_framework.exceptions import ErrorDetail
 from .models import Suit, Price
 from .serializers import SuitSerializer
-from .views import ListSuitsView
+
 
 class BaseViewTest(APITestCase):
     client = APIClient()
-    request_factory = APIRequestFactory() # every test needs access to the request factory.
+    request_factory = APIRequestFactory()  # every test needs access to the request factory.
 
     @staticmethod
     def create_suit(url='', name='', color='', fit='', material='', image=''):
@@ -17,7 +17,7 @@ class BaseViewTest(APITestCase):
 
     @staticmethod
     def create_price(suit=None, amount='', currency=''):
-        if suit != None and amount != '' and currency != '':
+        if suit is not None and amount != '' and currency != '':
             return Price.objects.create(suit=suit, amount=amount, currency=currency)
 
     def get_request(self, endpoint):
@@ -35,7 +35,7 @@ class BaseViewTest(APITestCase):
         suit_3 = self.create_suit('test_url_3', 'test_suit_3', 'grey', 'slim', 'extra-slim', 'test-image')
         self.create_suit('test_url_4', 'test_suit_4', 'brown', 'slim', 'wool', 'test-image')
 
-        #prices
+        # prices
         self.create_price(suit_1, '123.00', 'GBP')
         self.create_price(suit_1, '123.00', 'EUR')
         self.create_price(suit_2, '130.00', 'GBP')

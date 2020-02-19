@@ -11,6 +11,7 @@ def api_root(request, format=None):
         'list-suits': reverse('list-suits', request=request, args=['v1'], format=format),
     })
 
+
 class StatusCheckView(generics.GenericAPIView):
     renderer_classes = [JSONRenderer]
 
