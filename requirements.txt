@@ -6,7 +6,7 @@ cffi==1.12.3
 constantly==15.1.0
 cryptography==2.6.1
 cssselect==1.0.3
-Django==2.2.10
+Django==2.2.13
 django-filter==2.2.0
 djangorestframework==3.9.4
 entrypoints==0.3
